@@ -1,10 +1,11 @@
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const http = require('http')
 const app = express();
 const server = http.createServer(app)
-const port = 8001;
+const port = process.env.PORT;
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ server });
 
@@ -16,7 +17,7 @@ const queries = require("./src/list/queries")
 app.use(express.json());
 
 const corsOptions = {
-    origin: process.env.corsOrigin,
+    origin: process.env.CORS,
     optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
